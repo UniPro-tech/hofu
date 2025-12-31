@@ -45,11 +45,13 @@ export default function Home() {
         {/* Hero */}
         <section className="text-center space-y-4 mb-10">
           <h1 className="text-2xl font-bold">
-            新年あけましておめでとうございます！！
+            <div>新年あけましておめでとうございます！！</div>
+            {/*font変更予定*/}
           </h1>
           <p>
             今年の抱負をみんなで共有しましょう！
           </p>
+          {/* モーダル予定 ここで認証&投稿情報入力する　モーダルは別コンポーネントで処理する予定 */}
           <button
             type="button"
             className="px-6 py-2 rounded bg-black text-white dark:bg-white dark:text-black hover:opacity-80 transition"
