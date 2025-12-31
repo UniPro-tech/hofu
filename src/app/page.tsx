@@ -72,7 +72,9 @@ export default function Home() {
             <div className="mb-2">
               <div className="font-bold">今年の抱負は、</div>
               <div className="text-2xl font-bold">毎日コードを書く！</div>
+              <div>人と関わってより色々な知識を共有したり、新しいツールや新しいコードのテンプレートなど作っていったりすることができたらいいなと、思います。</div>
             </div>
+            
             <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400">
               <span>👤 Takoyaki</span>
               <time>2026年1月1日</time>
@@ -82,7 +84,8 @@ export default function Home() {
           <article className="border rounded-lg p-4 shadow-sm hover:shadow-md transition bg-white dark:bg-gray-800">
             <div className="mb-2">
               <div className=" font-bold">今年の抱負は、</div>
-              <div className="text-2xl font-bold">新しい技術に挑戦する</div>  
+              <div className="text-2xl font-bold">新しい技術に挑戦する</div> 
+              <div>新しい技術に挑戦することで、より良いコードを書くことができると思います。</div>
             </div>
             <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400">
               <span>👤 Uniproject</span>
