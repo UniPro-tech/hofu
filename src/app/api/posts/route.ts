@@ -8,16 +8,31 @@ export async function POST(req: Request) {
       typeof body?.content === "string" ? body.content.trim() : "";
     let title = typeof body?.title === "string" ? body.title.trim() : "";
 
+    const MAX_TITLE = 100;
+    const MAX_CONTENT = 5000;
+
     if (!content) {
       return NextResponse.json(
         { error: "content is required" },
-        { status: 400 },
+        { status: 400 }
+      );
+    }
+
+    if (content.length > MAX_CONTENT) {
+      return NextResponse.json(
+        { error: `content must be <= ${MAX_CONTENT} chars` },
+        { status: 400 }
       );
     }
 
     if (!title) {
-      // デフォルトタイトルは先頭のテキスト（最大50文字）
-      title = content.slice(0, 50) || "無題";
+      // デフォルトタイトルは本文の先頭行（改行まで）を最大50文字で切り取る
+      const firstLine = content.split("\n")[0]?.trim() ?? "";
+      title = firstLine.slice(0, 50) || "無題";
+    }
+
+    if (title.length > MAX_TITLE) {
+      title = title.slice(0, MAX_TITLE);
     }
 
     const post = await PostModel.create(content, title);

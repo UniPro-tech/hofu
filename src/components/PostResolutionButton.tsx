@@ -9,11 +9,13 @@ type Props = {
 
 export default function PostResolutionButton({ sessionExists }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const titleRef = useRef<HTMLInputElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
-    if (isOpen) textareaRef.current?.focus();
+    if (isOpen) titleRef.current?.focus();
   }, [isOpen]);
 
   const handleClick = async () => {
@@ -27,6 +29,7 @@ export default function PostResolutionButton({ sessionExists }: Props) {
   const close = () => {
     setIsOpen(false);
     setContent("");
+    setTitle("");
   };
 
   const handleSubmit = (e?: React.FormEvent) => {
@@ -39,7 +42,7 @@ export default function PostResolutionButton({ sessionExists }: Props) {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify({ content }),
+      body: JSON.stringify({ title, content }),
     });
     setIsOpen(false);
   };
@@ -75,6 +78,17 @@ export default function PostResolutionButton({ sessionExists }: Props) {
             <h2 className="text-lg font-semibold mb-2 text-slate-900 dark:text-slate-100">
               抱負を投稿
             </h2>
+            <label className="block mb-3">
+              <input
+                ref={titleRef}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full p-3 border rounded-md bg-white text-slate-900 placeholder-slate-500 border-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-400 dark:border-slate-700"
+                placeholder="タイトル（例: 今年の抱負）"
+                aria-label="タイトル"
+                maxLength={100}
+              />
+            </label>
             <label className="block">
               <textarea
                 ref={textareaRef}
