@@ -18,7 +18,7 @@ function Logo() {
 
       {/* Dark mode */}
       <Image
-        src="/Uniproject_white.png"
+        src="/uniproject_white.png"
         alt="Uniproject"
         fill
         className="object-contain hidden dark:block"
